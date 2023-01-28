@@ -17,12 +17,11 @@ export default defineConfig({
 	resolve: {
 		alias: {
 			assets: path.resolve(__dirname, "./src/assets"),
+			atoms: path.resolve(__dirname, "./src/atoms"),
 			core: path.resolve(__dirname, "./src/core"),
-			atomicui: path.resolve(__dirname, "./src/atomicui"),
-			hooks: path.resolve(__dirname, "./src/hooks"),
-			services: path.resolve(__dirname, "./src/services"),
-			stores: path.resolve(__dirname, "./src/stores"),
-			types: path.resolve(__dirname, "./src/types"),
+			molecules: path.resolve(__dirname, "./src/molecules"),
+			pages: path.resolve(__dirname, "./src/pages"),
+			organisms: path.resolve(__dirname, "./src/organisms"),
 			theme: path.resolve(__dirname, "./src/theme"),
 			utils: path.resolve(__dirname, "./src/utils"),
 			"./runtimeConfig": "./runtimeConfig.browser"
