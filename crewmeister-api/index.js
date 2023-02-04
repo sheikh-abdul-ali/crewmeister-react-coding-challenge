@@ -28,15 +28,33 @@ const absences = require("./json-files/absences.json").payload;
 const members = require("./json-files/members.json").payload;
 // SetTimeout added to add a bit of delay and mimic an actual API
 router.get("/absences", async (req, res) => {
-  const {
-    page
+  let {
+    page,
+    filters = {}
   } = req.query;
+  filters = JSON.parse(filters);
+  console.log(filters);
+  const {
+    date,
+    type
+  } = filters;
 
-  let items = absences.slice(page * ROWS_PER_PAGE, page * ROWS_PER_PAGE + ROWS_PER_PAGE);
+  let items = absences;
+  if(!!date){
+    items = items.filter(({startDate, endDate}) => (new Date(startDate) <= new Date(date)) && (new Date(endDate) >= new Date(date)));
+  }
+  if(!!type){
+    items = items.filter(absence => absence.type === type);
+  }
+  
+  itemsCount = items.length;
+
+  items = items.slice(page * ROWS_PER_PAGE, page * ROWS_PER_PAGE + ROWS_PER_PAGE);
+  
   items = items.map(absence => {
     return {
       name: members.find(val => val.userId === absence.userId)?.name,
-      ...absence,
+      ...absence, 
     }
   });
 
@@ -44,7 +62,7 @@ router.get("/absences", async (req, res) => {
   setTimeout(() => {
     res.status(200).send({
       page,
-      totalItems: absences.length,
+      totalItems: itemsCount,
       items,
       more: true
     });
