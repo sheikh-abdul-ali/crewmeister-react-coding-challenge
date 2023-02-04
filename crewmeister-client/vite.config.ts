@@ -16,12 +16,14 @@ export default defineConfig({
 	],
 	resolve: {
 		alias: {
+			api: path.resolve(__dirname, "./src/api"),
 			assets: path.resolve(__dirname, "./src/assets"),
 			atoms: path.resolve(__dirname, "./src/atoms"),
 			core: path.resolve(__dirname, "./src/core"),
+			models: path.resolve(__dirname, "./src/models"),
 			molecules: path.resolve(__dirname, "./src/molecules"),
-			pages: path.resolve(__dirname, "./src/pages"),
 			organisms: path.resolve(__dirname, "./src/organisms"),
+			pages: path.resolve(__dirname, "./src/pages"),
 			theme: path.resolve(__dirname, "./src/theme"),
 			utils: path.resolve(__dirname, "./src/utils"),
 			"./runtimeConfig": "./runtimeConfig.browser"
