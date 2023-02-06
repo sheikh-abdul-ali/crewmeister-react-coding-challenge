@@ -1,6 +1,6 @@
 export interface BaseFindDto {
-	filters?: Record<string, unknown>;
-	page?: number;
+	filters?: string | Record<string, unknown>;
+	page: number;
 	// findAll?: boolean;
 	// include?: string[];
 	// orderBy?: Record<string, unknown>;

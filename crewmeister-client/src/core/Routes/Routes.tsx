@@ -11,7 +11,7 @@ import {
 	TablePagination,
 	TableRow
 } from "@mui/material";
-import { fetchAbsence } from "api/features/AbsenceManager/absenceManager";
+import { fetchAbsence } from "api/features/AbsenceManager/AbsenceManager";
 import { Absence } from "models/absence.model";
 
 function Routes() {

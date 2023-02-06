@@ -6,10 +6,13 @@ export interface Absence extends BaseModel {
 	confirmedAt?: string;
 	createdAt?: string;
 	crewId?: number;
-	endDate?: string;
+	endDate: string;
 	memberNote?: string;
+	name: string;
 	rejectedAt?: string;
-	startDate?: string;
-	type?: string;
-	userId?: number;
+	status: string;
+	duration: number;
+	startDate: string;
+	type: string;
+	userId: number;
 }
