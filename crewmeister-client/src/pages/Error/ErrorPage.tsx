@@ -2,7 +2,7 @@ import { Box, Button, Typography } from "@mui/material";
 import { Header } from "components";
 import { FallbackProps } from "react-error-boundary";
 
-const ErrorPage = ({ error, resetErrorBoundary }: FallbackProps) => {
+const ErrorPage = ({ resetErrorBoundary }: FallbackProps) => {
 	return (
 		<>
 			<Header />
@@ -14,7 +14,7 @@ const ErrorPage = ({ error, resetErrorBoundary }: FallbackProps) => {
 					<Typography align="center">
 						We are investigating this issue on our side. For further support you can email us at help@crewmeister.com
 					</Typography>
-					{/* <pre>{error.message}</pre> TODO: This message with unique ID will be sent over the backend for logging */}
+					{/* <pre>{error.message}</pre> TODO: This message (also full error object) with unique ID will be sent over the backend for logging */}
 					<Box display="flex" justifyContent="center">
 						<Button onClick={resetErrorBoundary}>Try again</Button>
 					</Box>

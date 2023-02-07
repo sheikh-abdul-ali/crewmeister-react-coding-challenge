@@ -1,6 +1,6 @@
-var format = require('date-fns/format');
-var parseISO = require('date-fns/parseISO');
-const differenceInDays = require('date-fns/differenceInDays');
+var format = require("date-fns/format");
+var parseISO = require("date-fns/parseISO");
+const differenceInDays = require("date-fns/differenceInDays");
 
 var express = require("express"),
   app = express(),
@@ -33,10 +33,11 @@ const ROWS_PER_PAGE = 10;
 const ABSENCE_STATUS = {
   REQUESTED: "Requested",
   CONFIRMED: "Confirmed",
-  REJECTED: "Rejected"
+  REJECTED: "Rejected",
 };
 const absences = require("./json-files/absences.json").payload;
 const members = require("./json-files/members.json").payload;
+
 // SetTimeout added to add a bit of delay and mimic an actual API
 router.get("/absences", async (req, res) => {
   let { page, filters = {} } = req.query;
@@ -61,15 +62,23 @@ router.get("/absences", async (req, res) => {
     page * ROWS_PER_PAGE,
     page * ROWS_PER_PAGE + ROWS_PER_PAGE
   );
-  
+
   items = items.map((absence) => {
     return {
       ...absence,
       name: members.find((val) => val.userId === absence.userId)?.name,
-      status: !!absence.confirmedAt ? ABSENCE_STATUS.CONFIRMED : (!!absence.rejectedAt ? ABSENCE_STATUS.REJECTED : ABSENCE_STATUS.REQUESTED),
+      status: !!absence.confirmedAt
+        ? ABSENCE_STATUS.CONFIRMED
+        : !!absence.rejectedAt
+        ? ABSENCE_STATUS.REJECTED
+        : ABSENCE_STATUS.REQUESTED,
       startDate: format(parseISO(absence.startDate), "dd-MM-yyyy"),
       endDate: format(parseISO(absence.endDate), "dd-MM-yyyy"),
-      duration: differenceInDays(new Date(absence.endDate), new Date(absence.startDate)) + 1,
+      duration:
+        differenceInDays(
+          new Date(absence.endDate),
+          new Date(absence.startDate)
+        ) + 1,
     };
   });
   setTimeout(() => {
@@ -81,6 +90,7 @@ router.get("/absences", async (req, res) => {
     });
   }, 1000);
 });
+
 router.get("/members", async (req, res) => {
   setTimeout(() => {
     res.status(200).send({
