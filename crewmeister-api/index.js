@@ -1,14 +1,10 @@
-var format = require("date-fns/format");
-var parseISO = require("date-fns/parseISO");
-const differenceInDays = require("date-fns/differenceInDays");
-
 var express = require("express"),
   app = express(),
   port = process.env.PORT || 3500;
 bodyParser = require("body-parser");
 const router = express.Router();
 
-// bodyParser Middlewares
+// bodyParser Middleware
 app.use(
   bodyParser.urlencoded({
     extended: true,
@@ -35,8 +31,13 @@ const ABSENCE_STATUS = {
   CONFIRMED: "Confirmed",
   REJECTED: "Rejected",
 };
+
+var format = require("date-fns/format");
+var parseISO = require("date-fns/parseISO");
+var differenceInDays = require("date-fns/differenceInDays");
 const absences = require("./json-files/absences.json").payload;
 const members = require("./json-files/members.json").payload;
+
 
 // SetTimeout added to add a bit of delay and mimic an actual API
 router.get("/absences", async (req, res) => {
