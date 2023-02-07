@@ -99,9 +99,13 @@ function AbsenceTable({ data, getPageData, page, setPage, totalItems, isFetching
 											<TableCell align="center">{row.startDate}</TableCell>
 											<TableCell align="center">{row.endDate}</TableCell>
 											<TableCell align="center">{row.duration}</TableCell>
-											<TableCell align="center">{row.memberNote}</TableCell>
+											<TableCell align="center" width="220px">
+												{row.memberNote}
+											</TableCell>
 											<TableCell align="center">{statusTag(row.status)}</TableCell>
-											<TableCell align="center">{row.admitterNote}</TableCell>
+											<TableCell align="center" width="220px">
+												{row.admitterNote}
+											</TableCell>
 											<TableCell align="center">
 												<ICalendarLink
 													filename={`${row.name.toLowerCase()}-${row.type}-${row.startDate}`}

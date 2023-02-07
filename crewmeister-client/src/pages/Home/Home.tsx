@@ -35,7 +35,7 @@ function Home() {
 	return (
 		<Box>
 			<Header />
-			<Box px={10} py={5} display={"flex"} flexDirection="column">
+			<Box px={8} py={5} display={"flex"} flexDirection="column">
 				<Box display={"flex"} flex-direction="row" justifyContent={"space-between"} alignItems={"center"}>
 					<Box display={"flex"} flex-direction="row" justifyContent="flex-start" alignItems="center" gap={4}>
 						<Typography>Filter By: </Typography>
