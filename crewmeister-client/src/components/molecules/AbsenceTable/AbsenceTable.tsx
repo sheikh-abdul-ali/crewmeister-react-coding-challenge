@@ -1,7 +1,5 @@
 import { SetStateAction } from "react";
 
-import FileDownloadIcon from "@mui/icons-material/FileDownload";
-
 import {
 	Box,
 	Chip,
@@ -19,6 +17,8 @@ import { Loader, NotFound } from "components/atoms";
 import ICalendarLink from "react-icalendar-link";
 
 import { stringToDate } from "utils/DateUtils";
+
+import { Icon } from "./styles";
 
 import { Absence } from "../../../models/absence.model";
 
@@ -115,7 +115,7 @@ function AbsenceTable({ data, getPageData, page, setPage, totalItems, isFetching
 														endTime: stringToDate(row.endDate)
 													}}
 												>
-													<FileDownloadIcon cursor={"pointer"} />
+													<Icon />
 												</ICalendarLink>
 											</TableCell>
 										</TableRow>
