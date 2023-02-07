@@ -79,7 +79,7 @@ router.get("/absences", async (req, res) => {
       items,
       more: true,
     });
-  }, 200);
+  }, 1000);
 });
 router.get("/members", async (req, res) => {
   setTimeout(() => {

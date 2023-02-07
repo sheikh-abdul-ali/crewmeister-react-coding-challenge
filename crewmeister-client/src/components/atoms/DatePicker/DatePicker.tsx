@@ -1,5 +1,3 @@
-import * as React from "react";
-
 import { TextField } from "@mui/material";
 
 function DatePicker({ label, changeHandler, ...inputProps }) {

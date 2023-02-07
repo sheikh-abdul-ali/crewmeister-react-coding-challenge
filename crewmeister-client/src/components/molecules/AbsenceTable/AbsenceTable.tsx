@@ -1,4 +1,3 @@
-// TODO: Change ESlint rules for errors and make them more strict.
 import { SetStateAction } from "react";
 
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
@@ -16,11 +15,12 @@ import {
 	TableRow
 } from "@mui/material";
 
+import { Loader, NotFound } from "components/atoms";
 import ICalendarLink from "react-icalendar-link";
 
 import { stringToDate } from "utils/DateUtils";
 
-import { Absence } from "../../models/absence.model";
+import { Absence } from "../../../models/absence.model";
 
 const TABLE_HEADER = [
 	"Member Name",
@@ -34,15 +34,15 @@ const TABLE_HEADER = [
 	"Download iCal Event"
 ];
 
-function Table({ data, getPageData, page, setPage, totalItems, isFetching }) {
-	const ABSENCE_STATUS = {
-		REQUESTED: "Requested",
-		CONFIRMED: "Confirmed",
-		REJECTED: "Rejected"
-	};
+type color = "success" | "info" | "error" | "warning" | "default";
 
-	type color = "success" | "info" | "error" | "warning" | "default";
+const ABSENCE_STATUS = {
+	REQUESTED: "Requested",
+	CONFIRMED: "Confirmed",
+	REJECTED: "Rejected"
+};
 
+function AbsenceTable({ data, getPageData, page, setPage, totalItems, isFetching }) {
 	const handleChangePage = (
 		_event: React.MouseEvent<HTMLButtonElement, MouseEvent> | null,
 		newPage: SetStateAction<number>
@@ -65,10 +65,16 @@ function Table({ data, getPageData, page, setPage, totalItems, isFetching }) {
 		return type === "vacation" ? <h1>&#127796;</h1> : <h1>&#129298;</h1>;
 	};
 
+	if (totalItems === 0 && !isFetching) {
+		return <NotFound />;
+	}
+
 	return (
 		<Box>
 			{isFetching ? (
-				<Box>Loading....</Box>
+				<Box height="100%">
+					<Loader color="primary" />
+				</Box>
 			) : (
 				<>
 					<TableContainer component={Paper}>
@@ -86,7 +92,7 @@ function Table({ data, getPageData, page, setPage, totalItems, isFetching }) {
 								{data.map((row: Absence) => {
 									return (
 										<TableRow key={row.id} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-											<TableCell component="th" scope="row">
+											<TableCell align="center" component="th" scope="row">
 												{row.name}
 											</TableCell>
 											<TableCell align="center">{absenceTypeEmoji(row.type)}</TableCell>
@@ -98,6 +104,7 @@ function Table({ data, getPageData, page, setPage, totalItems, isFetching }) {
 											<TableCell align="center">{row.admitterNote}</TableCell>
 											<TableCell align="center">
 												<ICalendarLink
+													filename={`${row.name.toLowerCase()}-${row.type}-${row.startDate}`}
 													event={{
 														title: row.name,
 														startTime: stringToDate(row.startDate),
@@ -127,4 +134,4 @@ function Table({ data, getPageData, page, setPage, totalItems, isFetching }) {
 	);
 }
 
-export default Table;
+export default AbsenceTable;

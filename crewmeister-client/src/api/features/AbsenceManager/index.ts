@@ -1,0 +1,1 @@
+export { fetchAbsence } from "./AbsenceManager";
