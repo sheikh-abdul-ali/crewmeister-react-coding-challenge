@@ -17,22 +17,13 @@ const parseStatus = <T>(res: Response, data: Promise<T>): Promise<T> => {
 export const request = async function <T>(
 	url: string,
 	method: RequestMethod = "GET",
-	body?: Record<string, unknown>,
-	options?: RequestInit,
 	emptyResponse = false
 ): Promise<T | null> {
 	const reqOptions: RequestInit = {
 		method
 	};
 
-	// If provided url is valid full url, like https://google.com we use it,
-	// instead of appending it to BASE_URL
-	let useBaseUrl = true;
-	try {
-		const validUrl = new URL(url);
-		if (validUrl) useBaseUrl = false;
-	} catch {}
-	const finalUrl = `${useBaseUrl ? BASE_URL : ""}${url}`;
+	const finalUrl = `${BASE_URL}${url}`;
 	try {
 		const res = await fetch(`${finalUrl}`, reqOptions);
 		return await parseStatus(res, emptyResponse ? new Promise(resolve => resolve(null)) : res.json());

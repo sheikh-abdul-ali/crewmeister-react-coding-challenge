@@ -1,6 +1,13 @@
+import { ChangeEvent } from "react";
+
 import { TextField } from "@mui/material";
 
-function DatePicker({ label, changeHandler, ...inputProps }) {
+interface DatePickerProps {
+	label: string;
+	changeHandler: (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void;
+}
+
+function DatePicker({ label, changeHandler, ...inputProps }: DatePickerProps) {
 	return (
 		<TextField
 			label={label}

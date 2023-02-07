@@ -48,3 +48,9 @@ $ yarn dev
 
 # head to the api folder
 $ npm run dev
+```
+
+## Setting up env variables
+
+``` VITE_BACKEND_API="http://localhost:3500/api"
+```

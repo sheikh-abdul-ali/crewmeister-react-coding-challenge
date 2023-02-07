@@ -1,4 +1,4 @@
-import { SetStateAction } from "react";
+import { Dispatch, SetStateAction } from "react";
 
 import {
 	Box,
@@ -42,7 +42,16 @@ const ABSENCE_STATUS = {
 	REJECTED: "Rejected"
 };
 
-function AbsenceTable({ data, getPageData, page, setPage, totalItems, isFetching }) {
+interface AbsenceTable {
+	data: Absence[];
+	getPageData: ({}) => Promise<void>;
+	page: number;
+	setPage: Dispatch<SetStateAction<number>>;
+	totalItems: number;
+	isFetching: boolean;
+}
+
+function AbsenceTable({ data, getPageData, page, setPage, totalItems, isFetching }: AbsenceTable) {
 	const handleChangePage = (
 		_event: React.MouseEvent<HTMLButtonElement, MouseEvent> | null,
 		newPage: SetStateAction<number>
@@ -50,6 +59,7 @@ function AbsenceTable({ data, getPageData, page, setPage, totalItems, isFetching
 		setPage(newPage);
 		getPageData({ page: newPage });
 	};
+
 	const statusTag = (status: string) => {
 		let color: color;
 		if (status === ABSENCE_STATUS.CONFIRMED) {
@@ -61,6 +71,7 @@ function AbsenceTable({ data, getPageData, page, setPage, totalItems, isFetching
 		}
 		return <Chip variant="outlined" color={color} label={status.toUpperCase()}></Chip>;
 	};
+
 	const absenceTypeEmoji = (type: string) => {
 		return type === "vacation" ? <h1>&#127796;</h1> : <h1>&#129298;</h1>;
 	};
@@ -78,7 +89,7 @@ function AbsenceTable({ data, getPageData, page, setPage, totalItems, isFetching
 			) : (
 				<>
 					<TableContainer component={Paper}>
-						<MUITable sx={{ minWidth: 650 }} aria-label="simple table">
+						<MUITable sx={{ minWidth: 650 }}>
 							<TableHead>
 								<TableRow hover>
 									{TABLE_HEADER.map((name, index) => (

@@ -87,7 +87,6 @@ router.get("/absences", async (req, res) => {
       page,
       totalItems: itemsCount,
       items,
-      more: true,
     });
   }, 1000);
 });
@@ -99,7 +98,6 @@ router.get("/members", async (req, res) => {
       perPage: 0,
       totalItems: 0,
       items: require("./json-files/members.json").payload,
-      more: true,
     });
   }, 1000);
 });

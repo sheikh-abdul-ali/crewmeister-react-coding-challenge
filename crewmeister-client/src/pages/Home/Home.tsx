@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 
 import { Box, SelectChangeEvent, Typography } from "@mui/material";
 
@@ -9,11 +9,11 @@ import { Absence } from "models/absence.model";
 
 function Home() {
 	const [data, setData] = useState<Absence[]>([]);
-	const [itemLength, setItemLength] = useState(0);
-	const [page, setPage] = useState(0);
-	const [loading, setLoading] = useState(false);
-	const [filterDate, setFilterDate] = useState("");
-	const [filterType, setFilterType] = useState("");
+	const [itemLength, setItemLength] = useState<number>(0);
+	const [page, setPage] = useState<number>(0);
+	const [loading, setLoading] = useState<boolean>(false);
+	const [filterDate, setFilterDate] = useState<string>("");
+	const [filterType, setFilterType] = useState<string>("");
 
 	const getAbsences = useCallback(
 		async ({ page = 0, date = filterDate, type = filterType }) => {
@@ -41,7 +41,9 @@ function Home() {
 						<Typography>Filter By: </Typography>
 						<DatePicker
 							label={"Date"}
-							changeHandler={({ target }: { target: HTMLInputElement }) => setFilterDate(target.value)}
+							changeHandler={(event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) =>
+								setFilterDate(event.target.value)
+							}
 						/>
 						<Select
 							menuItems={["sickness", "vacation"]}

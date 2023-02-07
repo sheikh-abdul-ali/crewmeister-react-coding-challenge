@@ -1,10 +1,17 @@
 import { Key } from "react";
 
-import { MenuItem as MUIMenuItem, Select as MUISelect } from "@mui/material";
+import { MenuItem as MUIMenuItem, Select as MUISelect, SelectChangeEvent } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 
-const Select = ({ menuItems, label, selectedValue, handleChange }) => {
+interface SelectProps {
+	menuItems: string[];
+	label: string;
+	selectedValue: string;
+	handleChange: (event: SelectChangeEvent) => void;
+}
+
+const Select = ({ menuItems, label, selectedValue, handleChange }: SelectProps) => {
 	return (
 		<FormControl sx={{ m: 1, width: 220 }}>
 			<InputLabel shrink>{label}</InputLabel>
