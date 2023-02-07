@@ -52,7 +52,7 @@ $ npm run dev
 
 ## Setting up env variables
 
-!!! This practice of adding env variables to Readme.md is Not Recommended.
+!!! This practice of adding env variables to Readme.md is not recommended.
 
 ```bash
  VITE_BACKEND_API="http://localhost:3500/api"
