@@ -40,6 +40,8 @@ $ cd crewmeister-client && yarn
 $ cd crewmeister-api && npm install
 ```
 
+**Please use Node v19.3.0 for this project**
+
 ## Running the app
 
 ```bash
