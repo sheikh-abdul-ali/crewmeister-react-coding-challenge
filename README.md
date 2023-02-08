@@ -57,5 +57,11 @@ $ npm run dev
 !!! This practice of adding env variables to Readme.md is not recommended.
 
 ```bash
- VITE_BACKEND_API="http://localhost:3500/api"
+cd crewmeister-client && touch .env.local
+```
+
+Now copy the following line into the .env.local file:
+
+```bash
+VITE_BACKEND_API=http://localhost:3500/api
 ```
