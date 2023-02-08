@@ -40,6 +40,8 @@ $ cd crewmeister-client && yarn
 $ cd crewmeister-api && npm install
 ```
 
+**Please use Node v19.3.0 for this project**
+
 ## Running the app
 
 ```bash
@@ -52,8 +54,14 @@ $ npm run dev
 
 ## Setting up env variables
 
-!!! This practice of adding env variables to Readme.md is Not Recommended.
+!!! This practice of adding env variables to Readme.md is not recommended.
 
 ```bash
- VITE_BACKEND_API="http://localhost:3500/api"
+cd crewmeister-client && touch .env.local
+```
+
+Now copy the following line into the .env.local file:
+
+```bash
+VITE_BACKEND_API=http://localhost:3500/api
 ```
